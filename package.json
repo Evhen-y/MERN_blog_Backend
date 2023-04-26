@@ -1,0 +1,28 @@
+{
+  "name": "blog_mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evhen-y/blog_MERN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evhen-y/blog_MERN/issues"
+  },
+  "homepage": "https://github.com/Evhen-y/blog_MERN#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.5",
+    "nodemon": "^2.0.22"
+  }
+}
