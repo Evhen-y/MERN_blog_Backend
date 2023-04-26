@@ -23,17 +23,31 @@ app.post("/auth/register", registerValidatior, async (req, res)=>{
     
         const password = req.body.password
         const salt = await bcrypt.genSalt(10)
-        const passwordHash = await bcrypt.hash(password, salt)
+        const hash = await bcrypt.hash(password, salt)
     
         const doc = new UserModel({
             email: req.body.email,
             fullName: req.body.fullName,
-            password: passwordHash,
+            passwordHash: hash,
             avatarUrl: req.body.avatarUrl
         })
     
         const user = await doc.save()
-        res.json(user)
+        
+        const token = jwt.sign({
+            _id: user.id //вкладываем в токен ID из монго
+        },
+        'secret123', //секретный ключ
+        {
+            expiresIn: '30d' //срок действия токена
+        }
+        )
+        console.log(" user.doc",  user)
+        const { passwordHash, ...userData} = user._doc
+        res.json({
+            ...userData,
+            token
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json("не удалось зарегистрироваться")
