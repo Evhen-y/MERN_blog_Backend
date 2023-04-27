@@ -2,11 +2,12 @@ import express from "express"
 import mongoose from "mongoose"
 import {registerValidatior} from "./validations/auth.js"
 import {login, getMe, registration} from "./controllers/userController.js"
-
+import {createPost, getAllPosts} from "./controllers/postController.js"
 import checkAuth from "./utils/checkAuth.js"
+
 mongoose.connect('mongodb+srv://zheka:1111@cluster0.ph7oomf.mongodb.net/blog')
 .then(()=> console.log("DB OK"))
-.catch((err)=> console.log("DB ERROR", error))
+.catch((err)=> console.log("DB ERROR", err))
 
 const app = express()
 app.use(express.json())
@@ -24,4 +25,10 @@ app.post("/auth/login", registerValidatior, login)
 app.get("/auth/me", checkAuth, getMe)
 
 app.post("/auth/register", registerValidatior, registration)
+
+app.get("/posts", getAllPosts)
+// app.get("/posts/:id", getOnePost)
+app.post("/posts", checkAuth, createPost)
+// app.delete("/posts/:id", deletePost)
+// app.patch("/posts/:id", updatePost)
 
