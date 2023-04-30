@@ -23,3 +23,4 @@ const UserSchema = new Schema({
 )
 
 export default model("User", UserSchema) //"User" это название таблицы и UserSchema єто сама модель
+// timestamps: true для создания даты
