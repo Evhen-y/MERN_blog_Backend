@@ -5,12 +5,12 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    password:{
+    passwordHash:{
         type: String,
         required: true,
 
@@ -22,4 +22,5 @@ const UserSchema = new Schema({
 }
 )
 
-export default model("User", UserSchema) //"User" это название модели и UserSchema єто сама модель
+export default model("User", UserSchema) //"User" это название таблицы и UserSchema єто сама модель
+// timestamps: true для создания даты
